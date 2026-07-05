@@ -1,3 +1,14 @@
+# Monorepo SaaS
+
+Deux produits vivent dans ce dépôt :
+
+| Produit | Dossier | Statut |
+|---|---|---|
+| ⚡ **FacturX Connect** — facturation électronique WooCommerce (Factur-X) | [`facturx/`](facturx/) | **Prioritaire** — [cadrage](docs/BUSINESS-PLAN-FACTURX.md) |
+| 🛠️ **Artisan Devis** — devis vocaux IA pour artisans | racine (ci-dessous) | En réserve — [cadrage](docs/BUSINESS-PLAN.md) |
+
+---
+
 # 🛠️ Artisan Devis
 
 **Le back-office IA des artisans du bâtiment.** Dictez votre chantier, obtenez un devis professionnel en 2 minutes — pensé pour être utilisé sur mobile, entre deux chantiers.
