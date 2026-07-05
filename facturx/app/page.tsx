@@ -1,80 +1,100 @@
-import { listInvoices } from "@/lib/store";
-import { invoiceTotalTTC } from "@/lib/types";
-import SimulateOrder from "./SimulateOrder";
+import Link from "next/link";
+import { listArticles } from "@/lib/blog";
+import LeadForm from "./LeadForm";
 
-export const dynamic = "force-dynamic";
-
-const euro = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
-
-export default function Dashboard() {
-  const invoices = listInvoices();
-  const totalTTC = invoices.reduce((s, i) => s + invoiceTotalTTC(i.lines), 0);
+export default function Landing() {
+  const articles = listArticles().slice(0, 3);
 
   return (
     <>
-      <h1>Tableau de bord de conformité</h1>
+      <section className="hero">
+        <span className="badge badge-warn">Obligation légale — septembre 2026</span>
+        <h1 className="hero-title">
+          Votre boutique WooCommerce n&apos;est pas conforme à la facturation électronique.
+        </h1>
+        <p className="hero-sub">
+          La réforme 2026-2027 impose des factures au format <strong>Factur-X</strong> — un PDF
+          classique ne suffira plus. FacturX Connect génère automatiquement une facture conforme
+          (norme EN 16931) à chaque commande. <strong>Installé → conforme en 5 minutes.</strong>
+        </p>
+        <LeadForm />
+        <p className="muted">
+          Gratuit jusqu&apos;à 10 factures/mois ·{" "}
+          <Link href="/dashboard">Voir la démo en direct →</Link>
+        </p>
+      </section>
 
-      <div className="stats">
-        <div className="stat">
-          <div className="value">{invoices.length}</div>
-          <div className="label">Factures Factur-X générées</div>
-        </div>
-        <div className="stat">
-          <div className="value">{euro.format(totalTTC)}</div>
-          <div className="label">Volume facturé TTC</div>
-        </div>
-        <div className="stat">
-          <div className="value">100 %</div>
-          <div className="label">Commandes conformes EN 16931</div>
-        </div>
-      </div>
+      <section className="card">
+        <h2>Comment ça marche</h2>
+        <ol className="steps">
+          <li>
+            <strong>Installez l&apos;extension</strong> sur votre WordPress et renseignez votre
+            SIREN et numéro de TVA.
+          </li>
+          <li>
+            <strong>Vendez comme d&apos;habitude</strong> — chaque commande génère sa facture
+            Factur-X : le PDF pour votre client, les données XML pour l&apos;administration.
+          </li>
+          <li>
+            <strong>Dormez tranquille</strong> — archivage, tableau de bord de conformité, et
+            bientôt la transmission directe via plateforme agréée.
+          </li>
+        </ol>
+      </section>
 
-      <SimulateOrder />
+      <section id="tarifs">
+        <h2>Tarifs</h2>
+        <div className="pricing">
+          <div className="price-card">
+            <h3>Découverte</h3>
+            <div className="price">0 €</div>
+            <ul>
+              <li>10 factures Factur-X / mois</li>
+              <li>Tableau de bord</li>
+              <li>Téléchargement PDF + XML</li>
+            </ul>
+          </div>
+          <div className="price-card featured">
+            <h3>Standard</h3>
+            <div className="price">
+              19 €<span className="muted">/mois</span>
+            </div>
+            <ul>
+              <li>Factures illimitées</li>
+              <li>Envoi automatique au client</li>
+              <li>Archivage légal</li>
+              <li>Support prioritaire par email</li>
+            </ul>
+          </div>
+          <div className="price-card">
+            <h3>Pro</h3>
+            <div className="price">
+              39 €<span className="muted">/mois</span>
+            </div>
+            <ul>
+              <li>Tout Standard</li>
+              <li>Transmission plateforme agréée (à venir)</li>
+              <li>Réception factures fournisseurs</li>
+              <li>Multi-boutiques</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      {invoices.length === 0 ? (
-        <div className="empty">
-          <p>Aucune facture pour l&apos;instant.</p>
-          <p className="muted">
-            Connectez le plugin WooCommerce (voir <code>wp-plugin/</code>) ou simulez une
-            commande ci-dessus.
-          </p>
-        </div>
-      ) : (
-        <div className="card">
-          <table>
-            <thead>
-              <tr>
-                <th>Facture</th>
-                <th>Client</th>
-                <th className="hide-mobile">Commande</th>
-                <th className="num">TTC</th>
-                <th>Fichiers</th>
-              </tr>
-            </thead>
-            <tbody>
-              {invoices.map((i) => (
-                <tr key={i.id}>
-                  <td>
-                    <strong>{i.numero}</strong>
-                    <div className="muted">{new Date(i.issuedAt).toLocaleDateString("fr-FR")}</div>
-                  </td>
-                  <td>{i.buyer.name}</td>
-                  <td className="hide-mobile">{i.orderRef}</td>
-                  <td className="num">{euro.format(invoiceTotalTTC(i.lines))}</td>
-                  <td className="links">
-                    <a href={`/api/invoices/${i.id}/pdf`} target="_blank">
-                      PDF
-                    </a>
-                    <a href={`/api/invoices/${i.id}/xml`} target="_blank">
-                      XML
-                    </a>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+      <section>
+        <h2>Comprendre la réforme</h2>
+        {articles.map((a) => (
+          <Link key={a.slug} href={`/blog/${a.slug}`} className="card">
+            <strong>{a.title}</strong>
+            <p className="muted" style={{ margin: "0.25rem 0 0" }}>
+              {a.description}
+            </p>
+          </Link>
+        ))}
+        <p>
+          <Link href="/blog">Tous les articles →</Link>
+        </p>
+      </section>
     </>
   );
 }

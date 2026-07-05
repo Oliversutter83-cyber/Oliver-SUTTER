@@ -21,7 +21,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Link href="/" className="brand">
             ⚡ FacturX Connect
           </Link>
-          <span className="badge badge-ok">Conforme EN 16931</span>
+          <nav className="nav">
+            <Link href="/blog">Blog</Link>
+            <Link href="/#tarifs">Tarifs</Link>
+            <Link href="/dashboard" className="btn btn-primary btn-sm">
+              Démo
+            </Link>
+          </nav>
         </header>
         <main className="container">{children}</main>
       </body>
