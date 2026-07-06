@@ -11,8 +11,11 @@ export default function Dashboard() {
   const totalTTC = invoices.reduce((s, i) => s + invoiceTotalTTC(i.lines), 0);
 
   return (
-    <>
-      <h1>Tableau de bord de conformité</h1>
+    <div className="page">
+      <span className="kicker">Espace marchand — démonstration</span>
+      <h1>
+        Tableau de bord de <em>conformité</em>.
+      </h1>
 
       <div className="stats">
         <div className="stat">
@@ -35,8 +38,7 @@ export default function Dashboard() {
         <div className="empty">
           <p>Aucune facture pour l&apos;instant.</p>
           <p className="muted">
-            Connectez le plugin WooCommerce (voir <code>wp-plugin/</code>) ou simulez une
-            commande ci-dessus.
+            Connectez l&apos;extension WooCommerce ou simulez une commande ci-dessus.
           </p>
         </div>
       ) : (
@@ -75,6 +77,6 @@ export default function Dashboard() {
           </table>
         </div>
       )}
-    </>
+    </div>
   );
 }

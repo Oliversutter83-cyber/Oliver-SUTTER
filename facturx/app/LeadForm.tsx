@@ -20,7 +20,7 @@ export default function LeadForm() {
   if (state === "done") {
     return (
       <p className="lead-ok">
-        ✅ C&apos;est noté ! Vous recevrez le guide de conformité et l&apos;accès à
+        C&apos;est noté — vous recevrez le guide de conformité et votre accès à
         l&apos;extension.
       </p>
     );
@@ -34,11 +34,12 @@ export default function LeadForm() {
         placeholder="votre@email.fr"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        aria-label="Votre adresse email"
       />
       <button className="btn btn-primary" disabled={state === "busy"}>
-        {state === "busy" ? "…" : "Être prêt pour 2026"}
+        {state === "busy" ? "Un instant…" : "Être prêt pour 2026"}
       </button>
-      {state === "error" && <span className="muted">Email invalide, réessayez.</span>}
+      {state === "error" && <span className="lead-error">Email invalide, réessayez.</span>}
     </form>
   );
 }

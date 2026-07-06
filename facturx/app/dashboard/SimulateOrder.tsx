@@ -49,15 +49,15 @@ export default function SimulateOrder() {
 
   return (
     <div className="card">
-      <strong>Tester sans boutique</strong>
-      <p className="muted">
-        Simule la réception d&apos;une commande WooCommerce : la facture Factur-X (PDF + XML
-        embarqué) est générée instantanément.
+      <span className="card-title">Tester sans boutique</span>
+      <p className="card-desc" style={{ marginBottom: "0.9rem" }}>
+        Simulez la réception d&apos;une commande WooCommerce : la facture Factur-X (PDF avec
+        données XML embarquées) est générée instantanément.
       </p>
       <button className="btn btn-primary" onClick={simulate} disabled={busy}>
-        {busy ? "Génération…" : "🛒 Simuler une commande"}
+        {busy ? "Génération en cours…" : "Simuler une commande"}
       </button>
-      {error && <p style={{ color: "#b3392f" }}>{error}</p>}
+      {error && <p className="lead-error">{error}</p>}
     </div>
   );
 }

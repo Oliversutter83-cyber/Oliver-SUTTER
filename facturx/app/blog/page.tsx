@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { listArticles } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "Blog — Facturation électronique 2026-2027 | FacturX Connect",
+  title: "Ressources — Facturation électronique 2026-2027 | FacturX Connect",
   description:
     "Guides clairs sur la réforme de la facturation électronique pour les e-commerçants : calendrier, format Factur-X, conformité WooCommerce.",
 };
@@ -11,19 +11,21 @@ export const metadata: Metadata = {
 export default function BlogIndex() {
   const articles = listArticles();
   return (
-    <>
-      <h1>Comprendre la facturation électronique</h1>
-      <p className="muted">
+    <div className="page narrow">
+      <span className="kicker">Ressources</span>
+      <h1>
+        Comprendre la facturation <em>électronique</em>.
+      </h1>
+      <p className="muted" style={{ marginBottom: "1.6rem" }}>
         Des réponses claires, sans jargon, pour préparer votre boutique aux échéances 2026-2027.
       </p>
       {articles.map((a) => (
         <Link key={a.slug} href={`/blog/${a.slug}`} className="card">
-          <strong>{a.title}</strong>
-          <p className="muted" style={{ margin: "0.25rem 0 0" }}>
-            {a.description}
-          </p>
+          <span className="card-title">{a.title}</span>
+          <p className="card-desc">{a.description}</p>
+          <span className="read-more">Lire l&apos;article →</span>
         </Link>
       ))}
-    </>
+    </div>
   );
 }

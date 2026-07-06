@@ -29,22 +29,33 @@ export default async function ArticlePage({
   const article = getArticle(slug);
   if (!article) notFound();
 
-  const html = await marked.parse(article.body);
+  // Le titre H1 vient du frontmatter — on retire le premier titre du markdown
+  // pour éviter le doublon.
+  const body = article.body.replace(/^#\s.*\r?\n/, "");
+  const html = await marked.parse(body);
 
   return (
-    <article className="card article">
+    <article className="article">
+      <p className="article-meta">
+        <Link href="/blog">Ressources</Link> ·{" "}
+        {article.date &&
+          new Date(article.date).toLocaleDateString("fr-FR", {
+            year: "numeric",
+            month: "long",
+          })}
+      </p>
+      <h1>{article.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: html }} />
-      <hr />
       <div className="article-cta">
         <strong>Votre boutique sera-t-elle prête ?</strong>
-        <p className="muted">
-          Recevez le guide de conformité et l&apos;accès à l&apos;extension — gratuit jusqu&apos;à
-          10 factures/mois.
+        <p>
+          Recevez le guide de conformité et votre accès à l&apos;extension — gratuit
+          jusqu&apos;à 10 factures par mois.
         </p>
         <LeadForm />
       </div>
       <p>
-        <Link href="/blog">← Tous les articles</Link>
+        <Link href="/blog">← Toutes les ressources</Link>
       </p>
     </article>
   );
