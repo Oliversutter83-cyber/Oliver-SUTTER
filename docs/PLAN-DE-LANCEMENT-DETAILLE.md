@@ -16,6 +16,29 @@ Pour encaisser via Stripe, il vous faut un numéro SIRET. Si vous n'en avez pas 
 
 > ✅ **Checkpoint** : dossier déposé, en attente du SIRET. On continue sans attendre.
 
+### ⚠️ Cas particulier : fondateur mineur
+
+Un mineur non émancipé ne peut pas exercer d'activité commerciale (vendre des abonnements en fait partie) ni ouvrir un compte Stripe (18 ans requis). **Rien de grave — trois voies :**
+
+**Plan A (recommandé) : un parent porte la partie légale.**
+- Le parent crée la micro-entreprise à son nom (étape 0 ci-dessus, 30 min, gratuit) et ouvre le compte Stripe rattaché.
+- Le fondateur opère tout le reste : produit, site, prospection, support.
+- Les revenus sont déclarés par le parent (micro-BIC/BNC trimestriel).
+- À la majorité : création de la structure au nom du fondateur et bascule (nouveau Stripe, transfert du domaine — une journée de démarches).
+
+*L'argumentaire pour les parents, en 4 points :*
+1. Le produit existe déjà, il est construit et testé — il ne s'agit pas de financer une idée, juste de signer les papiers.
+2. Coût réel : ~15 €/mois (hébergement + domaine). Pas d'emprunt, pas de stock, pas de local : le risque financier est celui d'un abonnement Netflix.
+3. La micro-entreprise se crée ET se ferme en ligne en 30 minutes — engagement réversible à tout moment.
+4. Le marché est porté par une obligation légale européenne (directive 2019/882) : la fenêtre 2026-2027 ne se représentera pas.
+
+**Plan B : construire maintenant, encaisser plus tard.**
+Tout ce qui n'exige aucun statut se lance immédiatement : domaine, site en ligne, scanner gratuit, capture d'emails, plugin WordPress.org, articles SEO, prospection « rapports gratuits » aux agences. La machine accumule leads, installations et référencement — l'actif le plus long à construire. Le paiement s'active en 1 h le jour où un Stripe existe (parent convaincu entre-temps, ou majorité). Adapter alors le site : bouton « S'abonner » → « Rejoindre la liste d'attente » (capture d'email) en attendant.
+
+**Plan C : l'émancipation** (possible dès 16 ans, décision du juge des tutelles avec accord parental). Procédure longue et lourde — seulement si le plan A est impossible et que le plan B frustre.
+
+*Dans tous les cas : ne jamais mentir sur l'identité du titulaire de l'entreprise dans les CGV/mentions légales, et rester sobre dans les emails de prospection (l'âge n'a pas à y figurer).*
+
 ---
 
 ## Étape 1 — Le nom et le domaine (~20 min, ~10 €/an)
