@@ -957,3 +957,208 @@ a {
   color: var(--ink-faint);
   font-size: 0.88rem;
 }
+
+/* ---------- Espace client ---------- */
+
+.dash-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.site-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.site-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 1.3rem 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+  text-decoration: none;
+  color: var(--ink);
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.site-card:hover {
+  border-color: var(--brand);
+  box-shadow: var(--shadow);
+}
+
+.score-chip {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.score-good { background: var(--accent-soft); color: var(--accent); }
+.score-mid { background: var(--warn-soft); color: var(--warn); }
+.score-bad { background: var(--danger-soft); color: var(--danger); }
+
+.table-scroll {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.data-table th,
+.data-table td {
+  border: 1px solid var(--line);
+  padding: 0.6rem 0.9rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.data-table th {
+  background: var(--paper-warm);
+}
+
+/* ---------- Rapport imprimable ---------- */
+
+.report {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+}
+
+.report-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.5rem;
+}
+
+.report-brand {
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--brand-deep);
+}
+
+.report-brand em {
+  font-style: normal;
+  color: var(--brand);
+}
+
+.report-head h1 {
+  font-size: 1.8rem;
+}
+
+.report-meta {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0 2rem;
+  font-size: 0.97rem;
+}
+
+.report-meta th,
+.report-meta td {
+  border: 1px solid var(--line);
+  padding: 0.55rem 0.9rem;
+  text-align: left;
+}
+
+.report-meta th {
+  background: var(--paper-warm);
+  width: 220px;
+}
+
+.report section {
+  margin-bottom: 2.2rem;
+}
+
+.report h2 {
+  font-size: 1.3rem;
+  border-bottom: 2px solid var(--brand);
+  padding-bottom: 0.35rem;
+}
+
+.report-finding {
+  margin-bottom: 1.4rem;
+  break-inside: avoid;
+}
+
+.report-finding h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.2rem;
+}
+
+.report-sev {
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
+.report-sev-critical { background: var(--danger-soft); color: var(--danger); }
+.report-sev-warning { background: var(--warn-soft); color: var(--warn); }
+
+.report-ref {
+  color: var(--ink-faint);
+  font-size: 0.88rem;
+  margin-bottom: 0.4rem;
+}
+
+.report-pages {
+  font-size: 0.88rem;
+  color: var(--ink-faint);
+  word-break: break-all;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.report-table th,
+.report-table td {
+  border: 1px solid var(--line);
+  padding: 0.5rem 0.8rem;
+  text-align: left;
+}
+
+.report-table th {
+  background: var(--paper-warm);
+}
+
+.report-foot {
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+  color: var(--ink-faint);
+  font-size: 0.88rem;
+}
+
+@media print {
+  .no-print,
+  .topbar,
+  .footer {
+    display: none !important;
+  }
+  body {
+    font-size: 12px;
+  }
+  .report {
+    padding: 0;
+    max-width: none;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}

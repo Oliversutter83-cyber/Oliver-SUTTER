@@ -60,6 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/blog">Ressources</Link>
               <Link href="/declaration">Déclaration</Link>
               <Link href="/#tarifs">Tarifs</Link>
+              <Link href="/login">Connexion</Link>
               <Link href="/#scanner" className="btn btn-primary btn-sm">
                 Tester mon site
               </Link>

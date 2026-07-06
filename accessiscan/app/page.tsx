@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ScanForm from "./ScanForm";
 import LeadForm from "./LeadForm";
+import CheckoutButton from "./CheckoutButton";
 
 export default function HomePage() {
   return (
@@ -135,9 +136,7 @@ export default function HomePage() {
                 <li>Rapport PDF à présenter en cas de contrôle</li>
                 <li>Support par email sous 24 h</li>
               </ul>
-              <a href="mailto:contact@accessiscan.fr?subject=Acc%C3%A8s%20Pro%20AccessiScan" className="btn btn-primary">
-                Démarrer — accès anticipé
-              </a>
+              <CheckoutButton plan="pro" label="S'abonner — 29 €/mois" />
             </div>
             <div className="plan">
               <h3>Agence</h3>
@@ -151,9 +150,7 @@ export default function HomePage() {
                 <li>Déclarations générées pour chaque client</li>
                 <li>Facturez l'audit 10× son coût à vos clients</li>
               </ul>
-              <a href="mailto:contact@accessiscan.fr?subject=Offre%20Agence%20AccessiScan" className="btn btn-ghost">
-                Parler à un humain (par email)
-              </a>
+              <CheckoutButton plan="agence" label="S'abonner — 149 €/mois" variant="ghost" />
             </div>
           </div>
         </section>

@@ -2,6 +2,7 @@
 // serveur (pas de CORS) puis on l'analyse avec le moteur d'audit.
 import { NextResponse } from "next/server";
 import { auditHtml } from "@/lib/audit";
+import { isForbiddenHost } from "@/lib/crawl";
 import fs from "fs";
 import path from "path";
 
@@ -15,21 +16,6 @@ function normalizeUrl(input: string): URL | null {
   } catch {
     return null;
   }
-}
-
-// Garde anti-SSRF minimale : uniquement http(s) vers des hôtes publics nommés.
-function isForbiddenHost(url: URL): boolean {
-  const host = url.hostname.toLowerCase();
-  if (!["http:", "https:"].includes(url.protocol)) return true;
-  if (!host.includes(".")) return true; // localhost, noms internes
-  if (/^\d+\.\d+\.\d+\.\d+$/.test(host)) {
-    const [a, b] = host.split(".").map(Number);
-    if (a === 10 || a === 127 || (a === 172 && b >= 16 && b <= 31) || (a === 192 && b === 168) || (a === 169 && b === 254)) {
-      return true;
-    }
-  }
-  if (host === "[::1]" || host.endsWith(".local") || host.endsWith(".internal")) return true;
-  return false;
 }
 
 function logScan(url: string, score: number) {
