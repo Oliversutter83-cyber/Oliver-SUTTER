@@ -2,6 +2,8 @@
 
 *L'objectif n'est pas la perfection, c'est le premier paiement. Tout ce qui suit se fait par écrit (email, formulaires) — zéro appel.*
 
+> 🔍 **Besoin du pas-à-pas complet ?** Chaque étape est détaillée clic par clic (Railway, Stripe, DNS, statut d'entreprise, scripts de prospection) dans [PLAN-DE-LANCEMENT-DETAILLE.md](PLAN-DE-LANCEMENT-DETAILLE.md).
+
 ## Jour 1-2 : mettre le site en ligne
 
 1. **Vérifier le nom.** Avant tout : disponibilité du domaine (`accessiscan.fr` ou variante) et recherche rapide INPI + Google. Si pris, renommer coûte 30 minutes maintenant, une semaine plus tard.
