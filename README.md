@@ -1,10 +1,11 @@
 # Monorepo SaaS
 
-Deux produits vivent dans ce dépôt :
+Trois produits vivent dans ce dépôt :
 
 | Produit | Dossier | Statut |
 |---|---|---|
-| ⚡ **FacturX Connect** — facturation électronique WooCommerce (Factur-X) | [`facturx/`](facturx/) | **Prioritaire** — [cadrage](docs/BUSINESS-PLAN-FACTURX.md) |
+| ♿ **AccessiScan** — audit accessibilité RGAA + déclaration légale (EAA) | [`accessiscan/`](accessiscan/) | **Prioritaire** — [cadrage](docs/BUSINESS-PLAN-ACCESSISCAN.md) · [plan 14 jours](docs/GUIDE-PREMIERS-REVENUS-ACCESSISCAN.md) |
+| ⚡ **FacturX Connect** — facturation électronique WooCommerce (Factur-X) | [`facturx/`](facturx/) | En réserve — [cadrage](docs/BUSINESS-PLAN-FACTURX.md) |
 | 🛠️ **Artisan Devis** — devis vocaux IA pour artisans | racine (ci-dessous) | En réserve — [cadrage](docs/BUSINESS-PLAN.md) |
 
 ---
