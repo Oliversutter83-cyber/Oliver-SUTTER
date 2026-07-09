@@ -159,6 +159,35 @@ td.num, th.num {
   white-space: nowrap;
 }
 
+.table-edit input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem;
+  font: inherit;
+  font-size: 0.9rem;
+  background: var(--card);
+}
+
+.table-edit input[type="number"] {
+  width: 5.5rem;
+  text-align: right;
+}
+
+.table-edit td:nth-child(3) input {
+  width: 4rem;
+}
+
+.btn-ligne-suppr {
+  border: none;
+  background: none;
+  color: var(--bad);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  line-height: 1;
+}
+
 .totals {
   margin-top: 0.75rem;
   text-align: right;

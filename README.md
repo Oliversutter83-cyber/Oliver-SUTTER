@@ -62,7 +62,7 @@ docs/
 ## Prochaines étapes (post-MVP)
 
 - [ ] Authentification multi-artisans + Postgres
-- [ ] Édition des lignes du devis avant enregistrement
+- [x] Édition des lignes du devis avant enregistrement (modifier, ajouter, supprimer des lignes sur l'aperçu)
 - [ ] Envoi du devis par SMS/email avec signature électronique
 - [ ] Conversion devis signé → facture **Factur-X** (réforme facturation électronique 2026-2027)
 - [ ] Relances automatiques des impayés

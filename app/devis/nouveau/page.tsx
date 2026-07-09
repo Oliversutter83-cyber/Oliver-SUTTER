@@ -77,6 +77,37 @@ export default function NouveauDevis() {
     }
   }
 
+  function modifierLigne(index: number, patch: Partial<LigneDevis>) {
+    setDraft((prev) =>
+      prev
+        ? {
+            ...prev,
+            lignes: prev.lignes.map((l, i) => (i === index ? { ...l, ...patch } : l)),
+          }
+        : prev
+    );
+  }
+
+  function ajouterLigne() {
+    setDraft((prev) =>
+      prev
+        ? {
+            ...prev,
+            lignes: [
+              ...prev.lignes,
+              { designation: "", quantite: 1, unite: "u", prixUnitaireHT: 0 },
+            ],
+          }
+        : prev
+    );
+  }
+
+  function supprimerLigne(index: number) {
+    setDraft((prev) =>
+      prev ? { ...prev, lignes: prev.lignes.filter((_, i) => i !== index) } : prev
+    );
+  }
+
   async function enregistrer() {
     if (!draft) return;
     setSaving(true);
@@ -99,6 +130,11 @@ export default function NouveauDevis() {
   const totalHT = draft
     ? draft.lignes.reduce((s, l) => s + l.quantite * l.prixUnitaireHT, 0)
     : 0;
+
+  const lignesValides =
+    draft !== null &&
+    draft.lignes.length > 0 &&
+    draft.lignes.every((l) => l.designation.trim().length > 0);
 
   return (
     <>
@@ -146,28 +182,77 @@ export default function NouveauDevis() {
             {draft.client.adresse ? ` · ${draft.client.adresse}` : ""}
             {draft.client.telephone ? ` · ${draft.client.telephone}` : ""}
           </p>
-          <table>
+          <table className="table-edit">
             <thead>
               <tr>
                 <th>Désignation</th>
                 <th className="num">Qté</th>
+                <th>Unité</th>
                 <th className="num">PU HT</th>
                 <th className="num">Total HT</th>
+                <th />
               </tr>
             </thead>
             <tbody>
               {draft.lignes.map((l, i) => (
                 <tr key={i}>
-                  <td>{l.designation}</td>
-                  <td className="num">
-                    {l.quantite} {l.unite}
+                  <td>
+                    <input
+                      type="text"
+                      value={l.designation}
+                      placeholder="Désignation"
+                      onChange={(e) => modifierLigne(i, { designation: e.target.value })}
+                    />
                   </td>
-                  <td className="num">{euro.format(l.prixUnitaireHT)}</td>
+                  <td className="num">
+                    <input
+                      type="number"
+                      min={0}
+                      step={0.5}
+                      value={l.quantite}
+                      onChange={(e) =>
+                        modifierLigne(i, { quantite: Number(e.target.value) || 0 })
+                      }
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value={l.unite}
+                      placeholder="u"
+                      onChange={(e) => modifierLigne(i, { unite: e.target.value })}
+                    />
+                  </td>
+                  <td className="num">
+                    <input
+                      type="number"
+                      min={0}
+                      step={0.01}
+                      value={l.prixUnitaireHT}
+                      onChange={(e) =>
+                        modifierLigne(i, { prixUnitaireHT: Number(e.target.value) || 0 })
+                      }
+                    />
+                  </td>
                   <td className="num">{euro.format(l.quantite * l.prixUnitaireHT)}</td>
+                  <td>
+                    <button
+                      type="button"
+                      className="btn-ligne-suppr"
+                      onClick={() => supprimerLigne(i)}
+                      aria-label={`Supprimer la ligne ${i + 1}`}
+                      title="Supprimer la ligne"
+                    >
+                      ✕
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
+          <button type="button" className="btn" onClick={ajouterLigne} style={{ marginTop: "0.5rem" }}>
+            ＋ Ajouter une ligne
+          </button>
           <div className="totals">
             <div>Total HT : {euro.format(totalHT)}</div>
             <div className="muted">TVA {draft.tauxTVA} %</div>
@@ -176,8 +261,18 @@ export default function NouveauDevis() {
             </div>
           </div>
           {draft.notes && <p className="muted">{draft.notes}</p>}
+          {!lignesValides && (
+            <p className="muted">
+              Le devis doit contenir au moins une ligne, et chaque ligne doit avoir une
+              désignation.
+            </p>
+          )}
           <div className="actions">
-            <button className="btn btn-primary" onClick={enregistrer} disabled={saving}>
+            <button
+              className="btn btn-primary"
+              onClick={enregistrer}
+              disabled={saving || !lignesValides}
+            >
               {saving ? "Enregistrement…" : "💾 Enregistrer le devis"}
             </button>
             <button className="btn" onClick={() => setDraft(null)} disabled={saving}>
